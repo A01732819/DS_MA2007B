@@ -1,6 +1,32 @@
-import streamlit as st
 import os
 import base64 # Necesario para codificar las imágenes
+
+import streamlit as st
+import boto3
+
+# Accede a las variables desde los secrets de Streamlit
+aws_access_key_id = st.secrets["AWS_ACCESS_KEY_ID"]
+aws_secret_access_key = st.secrets["AWS_SECRET_ACCESS_KEY"]
+region_name = st.secrets["S3_AUTH_REGION"]
+bucket_name = st.secrets["S3_AUTH_BUCKET_NAME"]
+users_file = st.secrets["S3_AUTH_USERS_FILE"]
+
+# Usa las variables para crear el cliente de S3
+s3_client = boto3.client(
+    's3',
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=region_name
+)
+
+# Ahora puedes usar s3_client para interactuar con tu bucket
+# por ejemplo, para leer el archivo de usuarios:
+try:
+    response = s3_client.get_object(Bucket=bucket_name, Key=users_file)
+    user_data = response['Body'].read().decode('utf-8')
+    # ... procesar user_data
+except Exception as e:
+    st.error(f"No se pudo acceder al archivo de configuración en S3: {e}")
 
 st.set_page_config(page_title="Verificar Archivos", layout="wide")
 
