@@ -1,0 +1,206 @@
+/*
+Paleta de Colores:
+Azul marino (fondo): #171A4A
+Gris letras (actual): #8c8c8c
+Blanco: #FFFFFF
+Negro: #000000
+
+
+Naranja (Acento secundario/Botones) (anotiguo): #ff9a14
+Café letras (antiguo): #7f461b
+
+
+
+
+*/
+
+/* ==========================================================================
+   --- CONFIGURACIÓN GENERAL Y LAYOUT ---
+   ========================================================================== */
+
+header[data-testid="stHeader"], footer[data-testid="stFooter"] {
+    display: none;
+}
+
+.stApp {
+    /*background: linear-gradient(90deg,rgba(148, 184, 216, 1) 87%, rgba(22, 101, 158, 1) 100%);*/;
+    background: linear-gradient(1deg,rgba(255, 204, 95, 0.1) 0%, rgba(24, 26, 75, 1) 100%);
+    color: #ffffff;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #ddd;
+}
+.footer-logo {
+    max-height: 180px;
+    width: auto;
+}
+.footer-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #FFFFFF;
+}
+
+/* ==========================================================================
+   --- TIPOGRAFÍA ---
+   ========================================================================== */
+
+h1, h2, h3 {
+    color: #ff9a14;
+    font-weight: 700;
+}
+p {
+    color: #FFFFFF; /* CHECAR CON EL TEXTO */
+}
+h1 > span, h2 > span, h3 > span {
+    margin-right: 10px;
+}
+
+/* ==========================================================================
+   --- BOTONES UNIFICADOS --- #181a4b
+   ========================================================================== */
+
+div.stButton > button,
+div[data-testid="stDownloadButton"] > button,
+button[kind="formSubmit"] {
+    background-color: #2f2c79;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 500;
+}
+
+div.stButton > button:hover,
+div[data-testid="stDownloadButton"] > button:hover,
+button[kind="formSubmit"]:hover {
+    background-color: #3b3f76;
+    transform: scale(1.05);
+}
+
+div.stButton > button:active,
+div[data-testid="stDownloadButton"] > button:active,
+button[kind="formSubmit"]:active {
+    background-color: #fed1b9;
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   --- COMPONENTES DE FORMULARIO ---
+   ========================================================================== */
+
+/* --- ETIQUETAS DE FORMULARIOS - LA SOLUCIÓN DEFINITIVA --- */
+
+/* Esta regla apunta a TODAS las etiquetas de los componentes de Streamlit y les fuerza el color. */
+div[data-testid="stTextInput"] label,
+div[data-testid="stPasswordInput"] label,
+div[data-testid="stTextArea"] label,
+div[data-testid="stFileUploader"] label,
+div[data-testid="stCheckbox"] label {
+    color: #7f461b !important; /* FORZAMOS el color café */
+}
+
+/* Caso especial para el FileUploader si su fondo es oscuro */
+div[data-testid="stFileUploader"] label {
+    color: #000000 !important; /* Lo dejamos blanco solo para este componente */
+}
+
+/* --- CAMPOS DE ENTRADA (Inputs, etc.) --- */
+input[type="text"], input[type="password"] {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+    border: 1px solid #444444;
+    border-radius: 12px;
+    padding: 15px;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #E57373;
+    box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.3);
+}
+
+/* ==========================================================================
+   --- OTROS COMPONENTES ESPECÍFICOS ---
+   ========================================================================== */
+
+/* --- PESTAÑAS (st.tabs) --- */
+/* Esta regla ataca el fondo azul que no querías */
+div[data-baseweb="tab"] {
+    background-color: transparent !important;
+}
+
+/* Apuntamos al párrafo DENTRO de la pestaña */
+div[data-baseweb="tab"] p {
+    color: #a1887f; /* Café claro para pestaña inactiva */
+}
+/* Estilo para la pestaña ACTIVA */
+div[data-baseweb="tab"][aria-selected="true"] {
+    border-bottom: 3px solid #ff9a14; /* Línea naranja */
+}
+/* Apuntamos al párrafo DENTRO de la pestaña ACTIVA */
+div[data-baseweb="tab"][aria-selected="true"] p {
+    color: #7f461b; /* Café oscuro para pestaña activa */
+    font-weight: 700;
+}
+div[data-baseweb="tab"][aria-selected="false"]:hover p {
+    color: #7f461b;
+}
+
+/* --- SUBIDA DE ARCHIVOS (st.file_uploader) --- */
+div[data-testid="stFileUploader"] {
+    background-color: #c6c6c6  ; /*Esto sigue pendiente*/
+    border: 2px dashed #000000;
+    border-radius: 8px;
+    padding: 2rem;
+}
+div[data-testid="stFileUploader"] section {
+    background-color: #2f2c79; /*Esto otro también se modifica*/
+    border-radius: 10px;
+    padding: 2rem;
+}
+div[data-testid="stFileUploader"]:hover {
+    border-color: #000000;
+}
+div[data-testid="stFileUploader"] p { /* Texto "Drag and drop" */
+    color: #000000;
+    font-size: 1rem;
+}
+div[data-testid="stFileUploader"] button { /* Botón "Browse files" */
+    background-color: #f0f2f6;
+    color: #333;
+    border: 1px solid #dcdcdc;
+}
+
+/* --- ALERTAS (st.alert) --- */
+/* Forzar texto de colores específicos para cada tipo */
+.st-emotion-cache-12ro03s div { color: #0d47a1 !important; } /* Info */
+.st-emotion-cache-zt5z29 div { color: #f0f2f6 !important; } /* Success */
+.st-emotion-cache-l99jru div { color: #e65100 !important; } /* Warning */
+.st-emotion-cache-19rxjzo div { color: #FF0000 !important; } /* Error */
+
+
+/* ==========================================================================
+   --- RESPONSIVE DESIGN ---
+   ========================================================================== */
+@media (max-width: 768px) {
+    .stApp {
+        padding: 1rem;
+    }
+    .footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

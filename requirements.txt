@@ -1,0 +1,5 @@
+streamlit>=1.27          # interfaz y servidor
+streamlit-extras>=0.3.0  # componente let_it_rain
+boto3>=1.28              # SDK de AWS; trae botocore como dependencia
+cryptography>=41.0       # generación y verificación de firmas
+python-dotenv>=1.0       # para leer .env en local (opcional en producción)
